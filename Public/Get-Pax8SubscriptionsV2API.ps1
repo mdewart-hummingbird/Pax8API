@@ -6,12 +6,9 @@ function Get-Pax8SubscriptionsV2API {
     #Write-Host "Working on $($companyid.Name)"
     try {
       $Response = Invoke-WebRequest -Method Get `
-        -Uri ("https://app.pax8.com/p8p/api-v2/1/subscription?&companyId=$($companyid.id)&size=200") `
-        -ContentType 'application/json' `
-        -Headers @{
+        -Uri ($script:Pax8BaseURLv2 + "subscription?&companyId=$($companyid.id)&size=200") -ContentType 'application/json' -Headers @{
         Authorization = "Bearer $($script:Pax8Token)"
-      } `
-        -ea stop
+      } -ErrorAction Stop
       $JSON = $Response.content | ConvertFrom-Json
       $json
     } catch {
