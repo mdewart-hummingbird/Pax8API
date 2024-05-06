@@ -70,7 +70,7 @@ function Invoke-Pax8Request {
 				if ($_.Response.StatusCode -eq 429) {
 					Write-Warning "Rate limit exceeded. Waiting to try again."
 					Start-Sleep 8
-					$Result = Invoke-Pax8Request -Method $Method -Resource $Resource -ResourceFilter $ResourceFilter -Body $Body
+					$Result = Invoke-Pax8Request -Method $Method -Resource $Resource -ResourceFilter $ResourceFilter -Body $Body -v2API:$true
 				} else {
 					Write-Error "An Error Occured $($_) "
 				}
